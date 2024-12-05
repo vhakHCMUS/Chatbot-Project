@@ -1,0 +1,30 @@
+model_type: llm
+base_model: mistralai/Mistral-7B-v0.1
+quantization:
+  bits: 4
+adapter:
+  type: lora
+prompt:
+  template: |
+    ### Instruction:
+    {instruction}
+    ### Input:
+    {input}
+    ### Response:
+input_features:
+  - name: prompt
+    type: text
+    preprocessing:
+      max_sequence_length: 256
+output_features:
+  - name: output
+    type: text
+    preprocessing:
+      max_sequence_length: 256
+trainer:
+  learning_rate: 0.0001
+  batch_size: 1
+  gradient_accumulation_steps: 16
+  epochs: 3
+  learning_rate_scheduler:
+    warmup_fraction: 0.01
