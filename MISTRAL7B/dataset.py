@@ -14,31 +14,34 @@ def load_dataset_and_tokenizer(config):
     except Exception as e:
         raise RuntimeError(f"Failed to load dataset: {e}")
     
-    # Load tokenizer
-    model_name = config['base_model']
-    try:
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        logging.info("Tokenizer loaded successfully.")
-    except Exception as e:
-        raise RuntimeError(f"Failed to load tokenizer: {e}")
-
+    # Set up tokenizer with padding
+    tokenizer = AutoTokenizer.from_pretrained(config['base_model'])
+    tokenizer.pad_token = tokenizer.eos_token  # Use EOS token as padding token
+    tokenizer.padding_side = "right"  # Pad on the right side
+    
+    logging.info("Tokenizer loaded successfully.")
     return ds, tokenizer
 
 def preprocess_function(examples, config, tokenizer):
-    max_seq_length = config['input_features'][0]['preprocessing']['max_sequence_length']
-
-    inputs = [
-        config["prompt"]["template"].format(
-            instruction=instruction,
-            input=example_input
-        )
-        for instruction, example_input in zip(examples["instruction"], examples["input"])
-    ]
-    model_inputs = tokenizer(inputs, max_length=max_seq_length, truncation=True, padding="max_length")
+    max_length = config.get('max_length', 2048)
     
-    labels = tokenizer(
-        examples["output"], max_length=max_seq_length, truncation=True, padding="max_length"
+    # Format each example as a conversation
+    conversations = []
+    for query_en, response_en in zip(examples["query_en"], examples["response_en"]):
+        # Format: simple Q&A format
+        conversation = f"Question: {query_en}\nAnswer: {response_en}"
+        conversations.append(conversation)
+    
+    # Tokenize the text
+    tokenized_inputs = tokenizer(
+        conversations,
+        truncation=True,
+        max_length=max_length,
+        padding='max_length',
+        return_tensors="pt"
     )
     
-    model_inputs["labels"] = labels["input_ids"]
-    return model_inputs
+    # Set up labels for training
+    tokenized_inputs["labels"] = tokenized_inputs["input_ids"].clone()
+    
+    return tokenized_inputs

@@ -28,3 +28,4 @@ trainer:
   epochs: 3
   learning_rate_scheduler:
     warmup_fraction: 0.01
+max_length: 2048
