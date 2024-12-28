@@ -28,7 +28,7 @@ gemini_model = genai.GenerativeModel(
 
 def gemini_image_to_text(image):
     model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(["Nhận diện văn bản từ ảnh", image])
+    response = model.generate_content(["Chỉ gửi nội dung của ảnh", image])
     return response.text
 
 # # Unzip the checkpoint if it's not unzipped yet
