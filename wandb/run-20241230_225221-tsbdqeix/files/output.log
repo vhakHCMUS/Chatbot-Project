@@ -1,0 +1,57 @@
+Model and tokenizer loaded successfully!
+MistralForCausalLM(
+  (model): MistralModel(
+    (embed_tokens): Embedding(32001, 4096)
+    (layers): ModuleList(
+      (0-31): 32 x MistralDecoderLayer(
+        (self_attn): MistralSdpaAttention(
+          (q_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+          (k_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+          (v_proj): Linear4bit(in_features=4096, out_features=1024, bias=False)
+          (o_proj): Linear4bit(in_features=4096, out_features=4096, bias=False)
+          (rotary_emb): MistralRotaryEmbedding()
+        )
+        (mlp): MistralMLP(
+          (gate_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+          (up_proj): Linear4bit(in_features=4096, out_features=14336, bias=False)
+          (down_proj): Linear4bit(in_features=14336, out_features=4096, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): MistralRMSNorm((4096,), eps=1e-05)
+        (post_attention_layernorm): MistralRMSNorm((4096,), eps=1e-05)
+      )
+    )
+    (norm): MistralRMSNorm((4096,), eps=1e-05)
+  )
+  (lm_head): Linear(in_features=4096, out_features=32001, bias=False)
+)
+trainable params: 85041184 || all params: 3837120544 || trainable%: 2.216276059739029
+steps per epoch: 164
+c:\Users\Admin\miniconda3\lib\site-packages\transformers\training_args.py:1575: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+{'loss': 0.9756, 'grad_norm': 2.1959965229034424, 'learning_rate': 2.319004524886878e-05, 'epoch': 1.0}
+{'eval_loss': 0.7124689817428589, 'eval_runtime': 39.6156, 'eval_samples_per_second': 2.07, 'eval_steps_per_second': 0.278, 'epoch': 1.0}
+c:\Users\Admin\miniconda3\lib\site-packages\peft\utils\save_and_load.py:230: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.
+  warnings.warn("Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.")
+{'loss': 0.594, 'grad_norm': 2.400202751159668, 'learning_rate': 1.8552036199095023e-05, 'epoch': 2.0}
+{'eval_loss': 0.6864623427391052, 'eval_runtime': 39.6039, 'eval_samples_per_second': 2.071, 'eval_steps_per_second': 0.278, 'epoch': 2.0}
+c:\Users\Admin\miniconda3\lib\site-packages\peft\utils\save_and_load.py:230: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.
+  warnings.warn("Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.")
+{'loss': 0.44, 'grad_norm': 2.7894482612609863, 'learning_rate': 1.3914027149321268e-05, 'epoch': 3.0}
+{'eval_loss': 0.7204725742340088, 'eval_runtime': 39.5219, 'eval_samples_per_second': 2.075, 'eval_steps_per_second': 0.278, 'epoch': 3.0}
+c:\Users\Admin\miniconda3\lib\site-packages\peft\utils\save_and_load.py:230: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.
+  warnings.warn("Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.")
+{'loss': 0.299, 'grad_norm': 4.15683126449585, 'learning_rate': 9.276018099547511e-06, 'epoch': 4.0}
+{'eval_loss': 0.80153888463974, 'eval_runtime': 39.4486, 'eval_samples_per_second': 2.079, 'eval_steps_per_second': 0.279, 'epoch': 4.0}
+c:\Users\Admin\miniconda3\lib\site-packages\peft\utils\save_and_load.py:230: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.
+  warnings.warn("Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.")
+{'loss': 0.1902, 'grad_norm': 4.116815090179443, 'learning_rate': 4.638009049773756e-06, 'epoch': 5.0}
+{'eval_loss': 0.9139918684959412, 'eval_runtime': 39.4457, 'eval_samples_per_second': 2.079, 'eval_steps_per_second': 0.279, 'epoch': 5.0}
+c:\Users\Admin\miniconda3\lib\site-packages\peft\utils\save_and_load.py:230: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.
+  warnings.warn("Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.")
+{'loss': 0.1231, 'grad_norm': 5.296316623687744, 'learning_rate': 0.0, 'epoch': 6.0}
+{'eval_loss': 1.0480365753173828, 'eval_runtime': 39.3995, 'eval_samples_per_second': 2.081, 'eval_steps_per_second': 0.279, 'epoch': 6.0}
+c:\Users\Admin\miniconda3\lib\site-packages\peft\utils\save_and_load.py:230: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.
+  warnings.warn("Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.")
+{'train_runtime': 6961.0432, 'train_samples_per_second': 0.565, 'train_steps_per_second': 0.141, 'train_loss': 0.4369705188565138, 'epoch': 6.0}
+Model and tokenizer have been saved to: D:\cache\mistral-fine-tuned-mistral-eng-math-finetune
