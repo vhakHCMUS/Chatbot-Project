@@ -68,7 +68,7 @@ def solve_math_problem(model, tokenizer, input_text):
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return response
 
-checkpoint_dir = "./math-eng/checkpoint-984"  
+checkpoint_dir = "./checkpoints/math-eng/checkpoint-984"  
 
 if "model" not in st.session_state:
     st.write("Loading model for the first time...")
